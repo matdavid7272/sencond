@@ -1,0 +1,17 @@
+1. Why did we put synchronization in the statement instead synchronized methods:
+ Becasue if just synchronization methods are used it is possible that two different thread enter two of the threee synchronized methods at 
+ the same time. This would cause both threads to be making changes on the accounts array at the same time and if it happens to be on the 
+ same account then the values will mess up. With a synchronization on the variable account[i] this prevents any two threads from accesing
+ the array at the asme time eliminating the problem.
+
+2. Comment about running time busy-waiting vs Semaphores:
+ We noticed a running time of 367ms with semaphores and 471 ms with busy-waiting. This makes sense because in busy-waiting, the threads
+ waste time waiting inside the while loop. This wastes cpu time which is why the running time is higher. On the other hand, the semaphores
+ work by putting the threads that are waiting in semaphore.acquire to sleep. They are only awakened once another thread runs semaphore.release()
+ This wastes much less cpu time; therefore, it is faster.
+
+3. Comment about using three server threads:
+ Utilizing three server threads gives the quickest execution time among all other attempts. This efficiency is due to the concurrent
+ operation of three threads, all three work extracting transactions from the buffer and processing them. Consequently, transactions 
+ experience reduced wait times in the buffer. As two servers engage in processing transactions, the third can initiats the retrieval of
+ a new transaction.
